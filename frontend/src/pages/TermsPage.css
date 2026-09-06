@@ -1,0 +1,195 @@
+/* ============================================================
+   Terms Page — Glassmorphism card, classy dark look
+   ============================================================ */
+
+.terms-root {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #020d1f 40%,
+    #041530 65%,
+    #071e3d 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 40px 20px;
+}
+
+/* Subtle radial glow — matches landing page feel */
+.terms-root::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  right: -5%;
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(5, 40, 100, 0.45) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ---- Glass card ---- */
+.terms-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 48px 52px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---- Title ---- */
+.terms-title {
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 28px;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+}
+
+/* ---- Divider ---- */
+.terms-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18) 30%,
+    rgba(255, 255, 255, 0.18) 70%,
+    transparent
+  );
+  margin-bottom: 28px;
+}
+
+/* ---- Intro text ---- */
+.terms-intro {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 28px;
+}
+
+/* ---- Checkbox row ---- */
+.terms-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.55;
+  margin-bottom: 28px;
+  user-select: none;
+}
+
+.terms-checkbox-label strong {
+  color: #fff;
+}
+
+/* Custom checkbox */
+.terms-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  position: relative;
+  margin-top: 1px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.terms-checkbox:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.terms-checkbox:checked {
+  background: #e50914;
+  border-color: #e50914;
+}
+
+.terms-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 11px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.terms-checkbox:focus-visible {
+  outline: 2px solid rgba(229, 9, 20, 0.7);
+  outline-offset: 3px;
+}
+
+/* ---- Continue button ---- */
+.terms-continue-btn {
+  width: 100%;
+  padding: 15px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 8px;
+  cursor: not-allowed;
+  background: rgba(229, 9, 20, 0.25);
+  color: rgba(255, 255, 255, 0.35);
+  transition: background 0.25s, color 0.25s, transform 0.15s, box-shadow 0.25s;
+}
+
+.terms-continue-btn.active {
+  background: #e50914;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.45);
+}
+
+.terms-continue-btn.active:hover {
+  background: #f6121d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(229, 9, 20, 0.55);
+}
+
+.terms-continue-btn.active:active {
+  transform: translateY(0);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 540px) {
+  .terms-card {
+    padding: 32px 24px;
+  }
+}
