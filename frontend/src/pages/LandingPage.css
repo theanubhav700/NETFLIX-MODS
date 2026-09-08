@@ -507,3 +507,106 @@
     height: 190px;
   }
 }
+
+/* ============================================================
+   Icon Input Fields
+   ============================================================ */
+
+.hero-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 14px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.hero-input-group:focus-within {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.input-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.input-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.hero-icon-input {
+  flex: 1;
+  padding: 15px 12px 15px 0;
+  font-size: 15px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+}
+
+.hero-icon-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input-eye-btn {
+  background: transparent;
+  border: none;
+  padding: 0 14px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.input-eye-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.input-eye-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Sign In button (below inputs) */
+.hero-signin-btn {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px 0;
+  font-size: 17px;
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+
+/* "Create an account" link row */
+.hero-create-link {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+.create-account-link {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.create-account-link:hover {
+  color: #e50914;
+}

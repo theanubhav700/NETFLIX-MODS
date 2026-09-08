@@ -1,12 +1,32 @@
 import { useState, useEffect } from 'react'
 import './LandingPage.css'
 
-const LANGUAGES = ['English', 'हिन्दी']
+const T = {
+  English: {
+    brand:          'NETFLIX MODS',
+    accountRequest: 'ACCOUNT REQUEST',
+    heroTitle:      <>Unlimited movies, TV<br />shows, and more</>,
+    heroSub:        'Watch anywhere.',
+    heroCta:        'Ready to watch? Sign in or create a new account.',
+    emailPlaceholder:    'Email address',
+    emailLabel:          'Email address',
+    passwordPlaceholder: 'Password',
+    passwordLabel:       'Password',
+    signIn:         'Sign In',
+    newHere:        'New here?',
+    createAccount:  'Create an account',
+    showPassword:   'Show password',
+    hidePassword:   'Hide password',
+  },
+}
 
-export default function LandingPage() {
-  const [loading, setLoading]     = useState(true)
-  const [langOpen, setLangOpen]   = useState(false)
-  const [selectedLang, setSelectedLang] = useState('English')
+export default function LandingPage({ onCreateAccount }) {
+  const [loading, setLoading] = useState(true)
+  const [email, setEmail]     = useState('')
+  const [password, setPassword] = useState('')
+  const [showPass, setShowPass] = useState(false)
+
+  const txt = T.English
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2500)
@@ -18,41 +38,10 @@ export default function LandingPage() {
       {/* ── Navbar ── */}
       <nav className="landing-nav">
         <div className="landing-logo">
-          <span className="brand-logo">NETFLIX MODS</span>
+          <span className="brand-logo">{txt.brand}</span>
         </div>
         <div className="landing-nav-right">
-          <button className="account-request-btn">ACCOUNT REQUEST</button>
-          <div className="lang-dropdown-wrapper">
-            <button
-              className="lang-btn"
-              onClick={() => setLangOpen(!langOpen)}
-              aria-haspopup="listbox"
-              aria-expanded={langOpen}
-            >
-              <svg className="lang-globe-icon" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 1.5a6.5 6.5 0 110 13A6.5 6.5 0 018 1.5zm2.94 3.06c.27.58.47 1.23.58 1.94H10.5a9.2 9.2 0 00-.3-1.2l.74-.74zM8 2.08c.38.5.7 1.16.94 1.92H7.06c.24-.76.56-1.42.94-1.92zm-3.68.98l.74.74c-.14.37-.24.77-.3 1.2H3.48a6.54 6.54 0 011.84-1.94zM3.09 6.5h1.67c-.05.49-.08.99-.08 1.5s.03 1.01.08 1.5H3.09a6.46 6.46 0 010-3zm.39 4.5h1.28c.06.43.16.83.3 1.2l-.74.74A6.54 6.54 0 013.48 11zm2.58 2.92c-.38-.5-.7-1.16-.94-1.92h1.88c-.24.76-.56 1.42-.94 1.92zm.94-3.42H7.06c-.06-.48-.09-.99-.09-1.5s.03-1.02.09-1.5H9.94c.06.48.09.99.09 1.5s-.03 1.02-.09 1.5zM8 13.92c-.38-.5-.7-1.16-.94-1.92h1.88c-.24.76-.56 1.42-.94 1.92zm2.94-.98l-.74-.74c.14-.37.24-.77.3-1.2h1.28a6.54 6.54 0 01-1.84 1.94zm2.21-2.44h-1.67c.05-.49.08-.99.08-1.5s-.03-1.01-.08-1.5h1.67a6.46 6.46 0 010 3zm-.37-4.5h-1.28a7.2 7.2 0 00-.3-1.2l.74-.74a6.54 6.54 0 01.84 1.94zm-2.72-2.92c.38.5.7 1.16.94 1.92H9.06c-.24-.76-.56-1.42-.94-1.92z" />
-              </svg>
-              <span>{selectedLang}</span>
-              <svg className={`lang-chevron ${langOpen ? 'open' : ''}`} viewBox="0 0 10 6" fill="currentColor">
-                <path d="M0 0l5 6 5-6z" />
-              </svg>
-            </button>
-            {langOpen && (
-              <ul className="lang-dropdown" role="listbox">
-                {LANGUAGES.map((lang) => (
-                  <li
-                    key={lang}
-                    role="option"
-                    aria-selected={selectedLang === lang}
-                    className={`lang-option ${selectedLang === lang ? 'active' : ''}`}
-                    onClick={() => { setSelectedLang(lang); setLangOpen(false) }}
-                  >
-                    {lang}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <button className="account-request-btn">{txt.accountRequest}</button>
         </div>
       </nav>
 
@@ -64,18 +53,76 @@ export default function LandingPage() {
           </div>
         ) : (
           <>
-            {/* Hero */}
             <section className="hero-content">
-              <h1 className="hero-title">Unlimited movies, TV<br />shows, and more</h1>
-              <p className="hero-sub">Watch anywhere.</p>
-              <p className="hero-cta-text">Ready to watch? Enter your email to create your account.</p>
-              <div className="hero-email-row">
-                <input type="email" placeholder="Email address" className="hero-email-input" aria-label="Email address" />
-                <button className="hero-get-started-btn">Get Started &nbsp;›</button>
+              <h1 className="hero-title">{txt.heroTitle}</h1>
+              <p className="hero-sub">{txt.heroSub}</p>
+              <p className="hero-cta-text">{txt.heroCta}</p>
+
+              {/* Email input */}
+              <div className="hero-input-group">
+                <span className="input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M2 7l10 7 10-7" />
+                  </svg>
+                </span>
+                <input
+                  type="email"
+                  placeholder={txt.emailPlaceholder}
+                  className="hero-icon-input"
+                  aria-label={txt.emailLabel}
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
               </div>
+
+              {/* Password input */}
+              <div className="hero-input-group">
+                <span className="input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="5" y="11" width="14" height="10" rx="2" />
+                    <path d="M8 11V7a4 4 0 018 0v4" />
+                    <circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none" />
+                  </svg>
+                </span>
+                <input
+                  type={showPass ? 'text' : 'password'}
+                  placeholder={txt.passwordPlaceholder}
+                  className="hero-icon-input"
+                  aria-label={txt.passwordLabel}
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="input-eye-btn"
+                  onClick={() => setShowPass(v => !v)}
+                  aria-label={showPass ? txt.hidePassword : txt.showPassword}
+                >
+                  {showPass ? (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17.94 17.94A10.94 10.94 0 0112 20C6 20 2 12 2 12a18.8 18.8 0 015.06-6.06M9.9 4.24A10.94 10.94 0 0112 4c6 0 10 8 10 8a18.8 18.8 0 01-2.49 3.65M6.53 6.53L17.47 17.47" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+
+              <button className="hero-get-started-btn hero-signin-btn">
+                {txt.signIn} &nbsp;›
+              </button>
+
+              <p className="hero-create-link">
+                {txt.newHere}{' '}
+                <button className="create-account-link" onClick={onCreateAccount}>
+                  {txt.createAccount}
+                </button>
+              </p>
             </section>
-
-
           </>
         )}
       </main>
