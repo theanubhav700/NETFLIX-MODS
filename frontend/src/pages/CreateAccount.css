@@ -81,13 +81,15 @@
 
 /* Brand name */
 .ca-brand {
-  color: #e50914;
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: 'Arial Black', Arial, sans-serif;
   margin-bottom: 48px;
+}
+
+.ca-brand-logo-img {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.5));
 }
 
 /* Hero headline */

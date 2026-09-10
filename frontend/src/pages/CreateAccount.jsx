@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './CreateAccount.css'
+import netmusicLogo from '../assets/netmusic-nav.png'
 
 const EyeOpen = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
@@ -17,14 +18,14 @@ const EyeOff = () => (
 )
 
 const FEATURES = [
-  { icon: '🎬', text: 'Stream thousands of exclusive movies & shows' },
-  { icon: '📱', text: 'Watch on any device — TV, phone, laptop, tablet' },
-  { icon: '⚡', text: 'HD & 4K quality with zero ads' },
-  { icon: '🔒', text: 'Secure account with parental controls' },
+  { icon: '🎵', text: 'Stream millions of songs in HD & lossless quality' },
+  { icon: '📱', text: 'Listen on any device — phone, tablet, laptop, smart TV' },
+  { icon: '⚡', text: 'Instant playback with zero buffering, zero ads' },
+  { icon: '🎧', text: 'Personalised playlists & recommendations just for you' },
 ]
 
 export default function CreateAccount({ onBack }) {
-  const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' })
+  const [form, setForm]               = useState({ name: '', email: '', password: '', confirm: '' })
   const [showPass, setShowPass]       = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [errors, setErrors]           = useState({})
@@ -63,12 +64,12 @@ export default function CreateAccount({ onBack }) {
               <path d="M7 12.5l3.5 3.5 6.5-7" />
             </svg>
           </div>
-          <h2 className="ca-success-title">Account Created!</h2>
+          <h2 className="ca-success-title">You're all set! 🎶</h2>
           <p className="ca-success-sub">
-            Welcome to <span className="ca-red">Netflix Mods</span>,{' '}
-            <strong>{form.name}</strong>. You're all set to start watching.
+            Welcome to <span className="ca-red">NETMUSIC</span>,{' '}
+            <strong>{form.name}</strong>. Your music journey starts now.
           </p>
-          <button className="ca-btn-primary" onClick={onBack}>Go to Sign In →</button>
+          <button className="ca-btn-primary" onClick={onBack}>Start Listening →</button>
         </div>
       </div>
     )
@@ -85,16 +86,18 @@ export default function CreateAccount({ onBack }) {
         <div className="ca-blob ca-blob-3" />
 
         <div className="ca-left-inner">
-          <div className="ca-brand">NETFLIX MODS</div>
+          <div className="ca-brand">
+            <img src={netmusicLogo} alt="NETMUSIC" className="ca-brand-logo-img" />
+          </div>
 
           <h1 className="ca-hero-title">
             Your world<br />
-            of <span className="ca-red">entertainment</span><br />
+            of <span className="ca-red">music</span><br />
             starts here.
           </h1>
           <p className="ca-hero-sub">
-            Create a free account and unlock unlimited streaming, exclusive content,
-            and personalised recommendations — all in one place.
+            Create a free account and unlock unlimited streaming, exclusive tracks,
+            and personalised playlists — all in one place.
           </p>
 
           <ul className="ca-features">
@@ -108,18 +111,18 @@ export default function CreateAccount({ onBack }) {
 
           <div className="ca-stats">
             <div className="ca-stat">
-              <span className="ca-stat-num">200M+</span>
-              <span className="ca-stat-label">Members</span>
+              <span className="ca-stat-num">80M+</span>
+              <span className="ca-stat-label">Songs</span>
             </div>
             <div className="ca-stat-divider" />
             <div className="ca-stat">
-              <span className="ca-stat-num">190+</span>
+              <span className="ca-stat-num">150+</span>
               <span className="ca-stat-label">Countries</span>
             </div>
             <div className="ca-stat-divider" />
             <div className="ca-stat">
-              <span className="ca-stat-num">15K+</span>
-              <span className="ca-stat-label">Titles</span>
+              <span className="ca-stat-num">5M+</span>
+              <span className="ca-stat-label">Listeners</span>
             </div>
           </div>
         </div>
@@ -139,7 +142,7 @@ export default function CreateAccount({ onBack }) {
 
           <div className="ca-form-header">
             <h2 className="ca-form-title">Create Account</h2>
-            <p className="ca-form-sub">Join millions watching today.</p>
+            <p className="ca-form-sub">Join millions of music lovers today.</p>
           </div>
 
           <form className="ca-form" onSubmit={handleSubmit} noValidate>
@@ -184,7 +187,7 @@ export default function CreateAccount({ onBack }) {
               {errors.email && <span className="ca-error">{errors.email}</span>}
             </div>
 
-            {/* Password + Confirm side by side */}
+            {/* Password + Confirm */}
             <div className="ca-row-two">
               {/* Password */}
               <div className={`ca-field ${errors.password ? 'ca-field--error' : ''}`}>
@@ -205,7 +208,7 @@ export default function CreateAccount({ onBack }) {
                   />
                   <button type="button" className="ca-eye-btn"
                     onClick={() => setShowPass(v => !v)}
-                    aria-label={showPass ? 'Hide' : 'Show'}>
+                    aria-label={showPass ? 'Hide password' : 'Show password'}>
                     {showPass ? <EyeOff /> : <EyeOpen />}
                   </button>
                 </div>
@@ -231,7 +234,7 @@ export default function CreateAccount({ onBack }) {
                   />
                   <button type="button" className="ca-eye-btn"
                     onClick={() => setShowConfirm(v => !v)}
-                    aria-label={showConfirm ? 'Hide' : 'Show'}>
+                    aria-label={showConfirm ? 'Hide password' : 'Show password'}>
                     {showConfirm ? <EyeOff /> : <EyeOpen />}
                   </button>
                 </div>

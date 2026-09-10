@@ -10,7 +10,7 @@ export default function TermsPage({ onAccept }) {
       <div className="terms-card">
         {/* Title */}
         <h1 className="terms-title">
-          NETFLIX MODS<br />Terms &amp; Conditions
+          NETMUSIC<br />Terms &amp; Conditions
         </h1>
 
         {/* Divider */}
@@ -18,11 +18,15 @@ export default function TermsPage({ onAccept }) {
 
         {/* Intro */}
         <p className="terms-intro">
-          By accessing or using the NETFLIX MODS platform, its content,
-          brand assets, logos, or any associated materials ("Platform Assets"),
-          you ("You" or "User") agree to be bound by the following Terms &amp;
-          Conditions ("Terms"). In the event of any conflict between these Terms
-          and any other written agreement between You and NETFLIX MODS,
+          By accessing or using the NETMUSIC platform, its content,
+          brand assets, logos, music library, playlists, or any associated
+          materials ("Platform Assets"), you ("You" or "User") agree to be
+          bound by the following Terms &amp; Conditions ("Terms"). NETMUSIC
+          grants you a limited, non-exclusive, non-transferable licence to
+          stream music and audio content solely for personal, non-commercial use.
+          Unauthorised reproduction, redistribution, or downloading of any content
+          is strictly prohibited. In the event of any conflict between these Terms
+          and any other written agreement between You and NETMUSIC,
           the written agreement shall prevail.
         </p>
 
@@ -40,7 +44,7 @@ export default function TermsPage({ onAccept }) {
           />
           <span>
             I have read and agree to the{' '}
-            <strong>Terms &amp; Conditions</strong> of NETFLIX MODS.
+            <strong>Terms &amp; Conditions</strong> of NETMUSIC.
           </span>
         </label>
 
@@ -50,7 +54,7 @@ export default function TermsPage({ onAccept }) {
           disabled={!agreed}
           onClick={onAccept}
         >
-          Continue to Platform &nbsp;›
+          Start Listening &nbsp;›
         </button>
       </div>
     </div>

@@ -1,30 +1,70 @@
 import { useState, useEffect } from 'react'
 import './LandingPage.css'
+import netmusicLogo from '../assets/netmusic-nav.png'
 
 const T = {
   English: {
-    brand:          'NETFLIX MODS',
-    accountRequest: 'ACCOUNT REQUEST',
-    heroTitle:      <>Unlimited movies, TV<br />shows, and more</>,
-    heroSub:        'Watch anywhere.',
-    heroCta:        'Ready to watch? Sign in or create a new account.',
+    brand:          'NETMUSIC',
+    accountRequest: 'GET PREMIUM',
+    heroTitle:      <>Unlimited music,<br />podcasts, and more</>,
+    heroSub:        'Listen anywhere, anytime.',
+    heroCta:        'Ready to listen? Sign in or create a free account.',
     emailPlaceholder:    'Email address',
     emailLabel:          'Email address',
     passwordPlaceholder: 'Password',
     passwordLabel:       'Password',
     signIn:         'Sign In',
     newHere:        'New here?',
-    createAccount:  'Create an account',
+    createAccount:  'Create a free account',
     showPassword:   'Show password',
     hidePassword:   'Hide password',
   },
 }
 
+const REASONS = [
+  {
+    title: 'Ad-Free Music',
+    desc:  'Enjoy unlimited songs without a single interruption. Pure music, zero ads.',
+    icon:  '🎵',
+  },
+  {
+    title: 'Listen Offline',
+    desc:  'Download your favourite tracks and playlists. Play without internet.',
+    icon:  '📥',
+  },
+  {
+    title: 'Hi-Fi Audio Quality',
+    desc:  'Experience studio-grade sound with lossless & high-bitrate streaming.',
+    icon:  '🎧',
+  },
+  {
+    title: 'Cross-Device Sync',
+    desc:  'Seamlessly switch between phone, tablet, laptop and smart speakers.',
+    icon:  '📱',
+  },
+]
+
+const TRENDING = [
+  { rank: '01', label: 'Blinding Lights',  color: '#1a0a2e' },
+  { rank: '02', label: 'Levitating',       color: '#0a1a2e' },
+  { rank: '03', label: 'Stay',             color: '#1a1a0a' },
+  { rank: '04', label: 'Heat Waves',       color: '#0a1a1a' },
+  { rank: '05', label: 'As It Was',        color: '#1a0a0a' },
+  { rank: '06', label: 'Flowers',          color: '#0a0a1a' },
+  { rank: '07', label: 'Cruel Summer',     color: '#1a150a' },
+  { rank: '08', label: 'Anti-Hero',        color: '#150a1a' },
+]
+
 export default function LandingPage({ onCreateAccount }) {
-  const [loading, setLoading] = useState(true)
-  const [email, setEmail]     = useState('')
-  const [password, setPassword] = useState('')
-  const [showPass, setShowPass] = useState(false)
+  const [loading, setLoading]     = useState(true)
+  const [email, setEmail]         = useState('')
+  const [password, setPassword]   = useState('')
+  const [showPass, setShowPass]   = useState(false)
+
+  // drag-scroll state
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX]         = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(0)
 
   const txt = T.English
 
@@ -33,12 +73,26 @@ export default function LandingPage({ onCreateAccount }) {
     return () => clearTimeout(timer)
   }, [])
 
+  const onMouseDown = (e) => {
+    setIsDragging(true)
+    setStartX(e.pageX - e.currentTarget.offsetLeft)
+    setScrollLeft(e.currentTarget.scrollLeft)
+  }
+  const onMouseMove = (e) => {
+    if (!isDragging) return
+    e.preventDefault()
+    const x    = e.pageX - e.currentTarget.offsetLeft
+    const walk = (x - startX) * 1.4
+    e.currentTarget.scrollLeft = scrollLeft - walk
+  }
+  const stopDrag = () => setIsDragging(false)
+
   return (
     <div className="landing-root">
       {/* ── Navbar ── */}
       <nav className="landing-nav">
         <div className="landing-logo">
-          <span className="brand-logo">{txt.brand}</span>
+          <img src={netmusicLogo} alt="NETMUSIC" className="brand-logo-img" />
         </div>
         <div className="landing-nav-right">
           <button className="account-request-btn">{txt.accountRequest}</button>
@@ -53,6 +107,7 @@ export default function LandingPage({ onCreateAccount }) {
           </div>
         ) : (
           <>
+            {/* ── Hero ── */}
             <section className="hero-content">
               <h1 className="hero-title">{txt.heroTitle}</h1>
               <p className="hero-sub">{txt.heroSub}</p>
@@ -61,7 +116,8 @@ export default function LandingPage({ onCreateAccount }) {
               {/* Email input */}
               <div className="hero-input-group">
                 <span className="input-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+                    strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                     <path d="M2 7l10 7 10-7" />
                   </svg>
@@ -79,7 +135,8 @@ export default function LandingPage({ onCreateAccount }) {
               {/* Password input */}
               <div className="hero-input-group">
                 <span className="input-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+                    strokeLinecap="round" strokeLinejoin="round">
                     <rect x="5" y="11" width="14" height="10" rx="2" />
                     <path d="M8 11V7a4 4 0 018 0v4" />
                     <circle cx="12" cy="16" r="1.2" fill="currentColor" stroke="none" />
@@ -100,11 +157,13 @@ export default function LandingPage({ onCreateAccount }) {
                   aria-label={showPass ? txt.hidePassword : txt.showPassword}
                 >
                   {showPass ? (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+                      strokeLinecap="round" strokeLinejoin="round">
                       <path d="M17.94 17.94A10.94 10.94 0 0112 20C6 20 2 12 2 12a18.8 18.8 0 015.06-6.06M9.9 4.24A10.94 10.94 0 0112 4c6 0 10 8 10 8a18.8 18.8 0 01-2.49 3.65M6.53 6.53L17.47 17.47" />
                     </svg>
                   ) : (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+                      strokeLinecap="round" strokeLinejoin="round">
                       <path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z" />
                       <circle cx="12" cy="12" r="3" />
                     </svg>
@@ -122,6 +181,56 @@ export default function LandingPage({ onCreateAccount }) {
                   {txt.createAccount}
                 </button>
               </p>
+            </section>
+
+            {/* ── Reasons section ── */}
+            <section className="reasons-section" aria-label="Why NETMUSIC">
+              <h2 className="section-heading">More reasons to join</h2>
+              <div className="reasons-grid">
+                {REASONS.map((r, i) => (
+                  <div className="reason-card" key={i}>
+                    <div className="reason-card-top">
+                      <p className="reason-title">{r.title}</p>
+                      <p className="reason-desc">{r.desc}</p>
+                    </div>
+                    <div className="reason-icon-wrap">
+                      <span className="feat-icon" aria-hidden="true"
+                        style={{ fontSize: 42, lineHeight: 1 }}>
+                        {r.icon}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* ── Trending Now ── */}
+            <section className="trending-section" aria-label="Trending Now">
+              <h2 className="section-heading">🔥 Trending Now</h2>
+              <div
+                className={`trending-track ${isDragging ? 'dragging' : ''}`}
+                onMouseDown={onMouseDown}
+                onMouseMove={onMouseMove}
+                onMouseUp={stopDrag}
+                onMouseLeave={stopDrag}
+              >
+                {TRENDING.map((t, i) => (
+                  <div
+                    className="trending-card"
+                    key={i}
+                    style={{ '--card-bg': t.color }}
+                    aria-label={t.label}
+                  >
+                    <span className="trending-rank">{t.rank}</span>
+                    <span className="trending-label">{t.label}</span>
+                    <span className="trending-play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </div>
+                ))}
+              </div>
             </section>
           </>
         )}

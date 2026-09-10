@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Netflix Mods App Icon — "NM" monogram, Netflix-style
+    Foreground layer for adaptive icon (API 26+)
+    Canvas: 108x108dp, safe zone: 72x72dp centered
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- ── Red glow background circle ── -->
+    <path
+        android:fillColor="#1a0000"
+        android:pathData="M54,54 m-42,0 a42,42 0 1,0 84,0 a42,42 0 1,0 -84,0" />
+
+    <!-- ── Outer red ring ── -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#E50914"
+        android:strokeWidth="2.2"
+        android:pathData="M54,54 m-38,0 a38,38 0 1,0 76,0 a38,38 0 1,0 -76,0" />
+
+    <!-- ══════════════════════════════════
+         "N" letter  — bold Netflix style
+         Left vertical bar
+    ══════════════════════════════════ -->
+    <path
+        android:fillColor="#E50914"
+        android:pathData="
+            M31,28
+            L31,80
+            L38.5,80
+            L38.5,28
+            Z" />
+
+    <!-- N diagonal stroke -->
+    <path
+        android:fillColor="#E50914"
+        android:pathData="
+            M31,28
+            L38.5,28
+            L69,80
+            L61.5,80
+            Z" />
+
+    <!-- N right vertical bar -->
+    <path
+        android:fillColor="#E50914"
+        android:pathData="
+            M61.5,28
+            L69,28
+            L69,80
+            L61.5,80
+            Z" />
+
+    <!-- ══════════════════════════════════
+         "M" letter — bold, right side
+         Left vertical bar of M
+    ══════════════════════════════════ -->
+    <!-- removed M to keep it clean as "N" with a red-on-black film-reel accent -->
+
+    <!-- ── Bottom accent line (film strip style) ── -->
+    <path
+        android:fillColor="#E50914"
+        android:pathData="M26,83 L82,83 L82,86 L26,86 Z" />
+
+    <!-- ── Top accent line ── -->
+    <path
+        android:fillColor="#E50914"
+        android:pathData="M26,22 L82,22 L82,25 L26,25 Z" />
+
+    <!-- Film reel dots on top bar -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M30,22 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M38,22 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M46,22 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M54,22 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M62,22 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M70,22 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+
+    <!-- Film reel dots on bottom bar -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M30,83 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M38,83 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M46,83 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M54,83 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M62,83 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+    <path
+        android:fillColor="#000000"
+        android:pathData="M70,83 m0,0 a2,1.5 0 1,0 4,0 a2,1.5 0 1,0 -4,0" />
+
+</vector>
