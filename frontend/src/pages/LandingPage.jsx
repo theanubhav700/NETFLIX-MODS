@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './LandingPage.css'
-import netmusicLogo from '../assets/netmusic-nav.png'
 
 const T = {
   English: {
@@ -92,7 +91,7 @@ export default function LandingPage({ onCreateAccount }) {
       {/* ── Navbar ── */}
       <nav className="landing-nav">
         <div className="landing-logo">
-          <img src={netmusicLogo} alt="NETMUSIC" className="brand-logo-img" />
+          <span className="brand-logo">{txt.brand}</span>
         </div>
         <div className="landing-nav-right">
           <button className="account-request-btn">{txt.accountRequest}</button>

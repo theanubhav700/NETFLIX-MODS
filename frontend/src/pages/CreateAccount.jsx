@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './CreateAccount.css'
-import netmusicLogo from '../assets/netmusic-nav.png'
 
 const EyeOpen = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
@@ -86,9 +85,7 @@ export default function CreateAccount({ onBack }) {
         <div className="ca-blob ca-blob-3" />
 
         <div className="ca-left-inner">
-          <div className="ca-brand">
-            <img src={netmusicLogo} alt="NETMUSIC" className="ca-brand-logo-img" />
-          </div>
+          <div className="ca-brand">NETMUSIC</div>
 
           <h1 className="ca-hero-title">
             Your world<br />

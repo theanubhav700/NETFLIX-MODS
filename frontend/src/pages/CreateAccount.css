@@ -81,7 +81,14 @@
 
 /* Brand name */
 .ca-brand {
+  color: #e50914;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
   margin-bottom: 48px;
+  user-select: none;
 }
 
 .ca-brand-logo-img {
