@@ -3,11 +3,10 @@
   "appName": "NETMUSIC",
   "webDir": "dist",
   "android": {
-    "path": "../android",
-    "allowMixedContent": true,
-    "backgroundColor": "#000000"
+    "path": "../android"
   },
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "cleartext": true
   }
 }

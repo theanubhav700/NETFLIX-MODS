@@ -1,4 +1,4 @@
-package com.netflixmods.app;
+package com.netmusic.app;
 
 import com.getcapacitor.BridgeActivity;
 
