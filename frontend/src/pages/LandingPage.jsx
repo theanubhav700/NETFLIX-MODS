@@ -63,11 +63,12 @@ const TRENDING = [
   { rank: '08', label: 'Anti-Hero',        color: '#150a1a' },
 ]
 
-export default function LandingPage({ onCreateAccount }) {
+export default function LandingPage({ onCreateAccount, onSignIn }) {
   const [loading, setLoading]     = useState(true)
   const [email, setEmail]         = useState('')
   const [password, setPassword]   = useState('')
   const [showPass, setShowPass]   = useState(false)
+  const [signInError, setSignInError] = useState('')
 
   // drag-scroll state
   const [isDragging, setIsDragging] = useState(false)
@@ -75,6 +76,25 @@ export default function LandingPage({ onCreateAccount }) {
   const [scrollLeft, setScrollLeft] = useState(0)
 
   const txt = T.English
+
+  // ── Sign In handler ──
+  const handleSignIn = () => {
+    setSignInError('')
+    if (!email.trim()) { setSignInError('Please enter your email.'); return }
+    if (!password)     { setSignInError('Please enter your password.'); return }
+
+    const accounts = JSON.parse(localStorage.getItem('nm_accounts') || '[]')
+    const match = accounts.find(
+      a => a.email.toLowerCase() === email.trim().toLowerCase() && a.password === password
+    )
+    if (!match) {
+      setSignInError('Incorrect email or password. Please try again.')
+      return
+    }
+    // save current user and proceed to greeting
+    localStorage.setItem('nm_current_user', JSON.stringify({ name: match.name, email: match.email }))
+    onSignIn(match.name)
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2500)
@@ -189,9 +209,13 @@ export default function LandingPage({ onCreateAccount }) {
                 </button>
               </div>
 
-              <button className="hero-get-started-btn hero-signin-btn">
+              <button className="hero-get-started-btn hero-signin-btn" onClick={handleSignIn}>
                 {txt.signIn} &nbsp;›
               </button>
+
+              {signInError && (
+                <p className="signin-error">{signInError}</p>
+              )}
 
               <p className="hero-create-link">
                 {txt.newHere}{' '}

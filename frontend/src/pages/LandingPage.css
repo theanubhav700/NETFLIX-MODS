@@ -616,7 +616,27 @@
   padding: 15px 0;
   font-size: 17px;
   border-radius: 4px;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
+}
+
+/* Sign in error message */
+.signin-error {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  background: rgba(229, 9, 20, 0.12);
+  border: 1px solid rgba(229, 9, 20, 0.4);
+  border-radius: 6px;
+  color: #ff6b6b;
+  font-size: 13px;
+  text-align: center;
+  animation: fadeInDown 0.25s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* "Create an account" link row */

@@ -23,7 +23,7 @@ const FEATURES = [
   { icon: '🎧', text: 'Personalised playlists & recommendations just for you' },
 ]
 
-export default function CreateAccount({ onBack }) {
+export default function CreateAccount({ onBack, onCreated }) {
   const [form, setForm]               = useState({ name: '', email: '', password: '', confirm: '' })
   const [showPass, setShowPass]       = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
@@ -42,11 +42,25 @@ export default function CreateAccount({ onBack }) {
     return e
   }
 
+  // ── Save account to localStorage ──
+  const saveAccount = () => {
+    const accounts = JSON.parse(localStorage.getItem('nm_accounts') || '[]')
+    // avoid duplicate emails
+    const existing = accounts.findIndex(a => a.email.toLowerCase() === form.email.toLowerCase())
+    const entry = { name: form.name.trim(), email: form.email.toLowerCase(), password: form.password }
+    if (existing >= 0) accounts[existing] = entry
+    else accounts.push(entry)
+    localStorage.setItem('nm_accounts', JSON.stringify(accounts))
+    // save current logged-in user
+    localStorage.setItem('nm_current_user', JSON.stringify({ name: entry.name, email: entry.email }))
+  }
+
   const handleSubmit = (ev) => {
     ev.preventDefault()
     const e = validate()
     if (Object.keys(e).length) { setErrors(e); return }
     setErrors({})
+    saveAccount()
     setSubmitted(true)
   }
 
@@ -55,20 +69,83 @@ export default function CreateAccount({ onBack }) {
     return (
       <div className="ca-root">
         <div className="ca-success-full">
-          <div className="ca-success-glow" />
-          <div className="ca-success-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"
-              strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M7 12.5l3.5 3.5 6.5-7" />
-            </svg>
+
+          {/* Animated background orbs */}
+          <div className="ca-success-orb ca-success-orb-1" />
+          <div className="ca-success-orb ca-success-orb-2" />
+          <div className="ca-success-orb ca-success-orb-3" />
+
+          {/* Floating music notes */}
+          {['♪','♫','♩','♬','♭','♮','♯'].map((note, i) => (
+            <span key={i} className={`ca-note ca-note-${i + 1}`}>{note}</span>
+          ))}
+
+          {/* Particle dots */}
+          {Array.from({ length: 20 }).map((_, i) => (
+            <span key={i} className={`ca-particle ca-particle-${i + 1}`} />
+          ))}
+
+          {/* Ripple rings */}
+          <div className="ca-ripple-wrap">
+            <div className="ca-ripple ca-ripple-1" />
+            <div className="ca-ripple ca-ripple-2" />
+            <div className="ca-ripple ca-ripple-3" />
           </div>
-          <h2 className="ca-success-title">You're all set! 🎶</h2>
-          <p className="ca-success-sub">
-            Welcome to <span className="ca-red">NETMUSIC</span>,{' '}
-            <strong>{form.name}</strong>. Your music journey starts now.
-          </p>
-          <button className="ca-btn-primary" onClick={onBack}>Start Listening →</button>
+
+          {/* Main card */}
+          <div className="ca-success-card">
+            {/* Animated checkmark icon */}
+            <div className="ca-success-icon-wrap">
+              <div className="ca-success-icon-ring" />
+              <div className="ca-success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                  strokeLinecap="round" strokeLinejoin="round" className="ca-check-svg">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M7 12.5l3.5 3.5 6.5-7" className="ca-check-path" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Equaliser bars */}
+            <div className="ca-equaliser">
+              {[1,2,3,4,5,6,7].map(n => (
+                <div key={n} className={`ca-eq-bar ca-eq-bar-${n}`} />
+              ))}
+            </div>
+
+            <h2 className="ca-success-title">
+              <span className="ca-title-word ca-tw-1">You're</span>{' '}
+              <span className="ca-title-word ca-tw-2">all</span>{' '}
+              <span className="ca-title-word ca-tw-3">set!</span>{' '}
+              <span className="ca-title-emoji">🎶</span>
+            </h2>
+
+            <p className="ca-success-sub">
+              Welcome to <span className="ca-red ca-brand-flash">NETMUSIC</span>,{' '}
+              <strong className="ca-username">{form.name}</strong>.
+              <br />Your music journey starts now.
+            </p>
+
+            {/* Waveform decoration */}
+            <div className="ca-waveform">
+              {Array.from({ length: 28 }).map((_, i) => (
+                <div key={i} className={`ca-wave-bar ca-wb-${(i % 7) + 1}`} />
+              ))}
+            </div>
+
+            <button className="ca-btn-primary ca-btn-listen" onClick={onCreated}>
+              <span className="ca-btn-text">Start Listening</span>
+              <span className="ca-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                  strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </span>
+              <span className="ca-btn-shine" />
+            </button>
+
+            <p className="ca-success-hint">Free forever · No credit card needed</p>
+          </div>
         </div>
       </div>
     )
