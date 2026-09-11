@@ -12,10 +12,10 @@ connectDB();
 const app = express();
 
 // ─── Middleware ───────────────────────────────────────────────
-// CORS: Allow React frontend & Vercel deployments to communicate with backend
+// CORS: Allow React frontend (port 5173) to communicate with backend
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
 
@@ -38,11 +38,6 @@ app.get('/api/test', (req, res) => {
 
 // ─── Start Server ─────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-  });
-}
-
-module.exports = app;
-
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
