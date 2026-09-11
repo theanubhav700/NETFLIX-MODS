@@ -318,18 +318,54 @@
 /* ---- Responsive ---- */
 @media (max-width: 600px) {
   .landing-nav {
-    padding: 14px 20px;
+    padding: 12px 14px;
   }
 
-  .netflix-svg {
-    width: 72px;
+  .brand-logo {
+    font-size: 20px;
+  }
+
+  .landing-nav-right {
+    gap: 6px;
+  }
+
+  .download-apk-btn {
+    font-size: 10px;
+    padding: 6px 9px;
+    letter-spacing: 0.03em;
   }
 
   .account-request-btn {
     font-size: 10px;
-    padding: 6px 10px;
+    padding: 6px 9px;
+    letter-spacing: 0.03em;
+  }
+
+  .netflix-svg {
+    width: 65px;
   }
 }
+
+@media (max-width: 380px) {
+  .landing-nav {
+    padding: 10px 8px;
+  }
+
+  .brand-logo {
+    font-size: 17px;
+  }
+
+  .landing-nav-right {
+    gap: 4px;
+  }
+
+  .download-apk-btn,
+  .account-request-btn {
+    font-size: 9px;
+    padding: 5px 6px;
+  }
+}
+
 
 /* ============================================================
    More Reasons to Join
