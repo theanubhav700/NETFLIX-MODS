@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react'
 import './LandingPage.css'
 
-// Detect karo ki app mein hai ya website pe
-const isNativeApp = () => {
-  try {
-    return window.Capacitor && window.Capacitor.isNativePlatform()
-  } catch {
-    return false
-  }
-}
-
 const T = {
   English: {
     brand:          'NETMUSIC',
@@ -123,16 +114,6 @@ export default function LandingPage({ onCreateAccount, onSignIn }) {
           <span className="brand-logo">{txt.brand}</span>
         </div>
         <div className="landing-nav-right">
-          {!isNativeApp() && (
-            <a
-              href="/NETMUSIC.apk"
-              download="NETMUSIC.apk"
-              className="download-apk-btn"
-              aria-label="Download Android App"
-            >
-              ⬇ DOWNLOAD APP
-            </a>
-          )}
           <button className="account-request-btn">{txt.accountRequest}</button>
         </div>
       </nav>
